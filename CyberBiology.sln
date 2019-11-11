@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CyberBiology", "CyberBiology\CyberBiology.pyproj", "{82EBFB1B-5B75-41D7-95A3-F58CB9E7FCDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82EBFB1B-5B75-41D7-95A3-F58CB9E7FCDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82EBFB1B-5B75-41D7-95A3-F58CB9E7FCDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90F2FE11-B45F-4E89-915F-64530384BA9D}
+	EndGlobalSection
+EndGlobal
