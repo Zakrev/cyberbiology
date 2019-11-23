@@ -25,6 +25,7 @@ class WorldUI(QWidget):
         pass
 
 class WorldMapUI(QWidget):
+    __color_map = None
     _wmap = None
     __timer = None
     __cell_h = 0
@@ -35,39 +36,35 @@ class WorldMapUI(QWidget):
         super().__init__(parent)
         self._wmap = wmap
         self.__timer = QBasicTimer()
-        self.__timer.start(250, self)
+        self.__timer.start(1000, self)
+        self.__color_map = []
 
     def resizeEvent(self, e):
         height = self.height()
         width = self.width()
-        height = int(height / self._wmap._h)
-        width = int(width / self._wmap._w)
+        height = int(height / self._wmap._h_size)
+        width = int(width / self._wmap._w_size)
         if height != self.__cell_h or self.__cell_w != width:
             self.__redraw = True
         self.__cell_h = height
         self.__cell_w = width
 
     def paintEvent(self, e):
-        if not self._wmap._redraw and not self.__redraw:
-            return
-
         qp = QPainter()
         qp.begin(self)
         # draw background
-        qp.setBrush(QColor(self._wmap._space_color))
+        qp.setBrush(QColor(self._wmap._back_color))
         qp.drawRect(self.frameGeometry())
         # draw cells
-        for h in range(0, self._wmap._h):
-            for w in range(0, self._wmap._w):
-                color = self._wmap.get_color(h, w)
-                if not color:
-                    continue
-                qp.setBrush(QColor(color))
-                qp.drawRect(QRect(w * self.__cell_w, h * self.__cell_h, self.__cell_w, self.__cell_h))
+        for unit in self.__color_map:
+            qp.setBrush(QColor(unit[2]))
+            qp.drawRect(QRect(unit[1] * self.__cell_w, unit[0] * self.__cell_h, self.__cell_w, self.__cell_h))
         qp.end()
-        self.__redraw = False
-        self._wmap.redraw_success()
 
     def timerEvent(self, e):
         self._wmap.iterate()
-        self.repaint()
+        if self._wmap._redraw or self.__redraw:
+            self.__color_map = self._wmap.generate_color_map()
+            self.repaint()
+            self.__redraw = False
+            self._wmap.redraw_success()

@@ -22,7 +22,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CyberBiology.py" />
-    <Compile Include="WorldStaticUnits.py">
+    <Compile Include="WorldProtocols.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorldUnits.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="WorldUI.py">
